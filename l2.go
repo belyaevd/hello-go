@@ -14,7 +14,7 @@ func main() {
 	division()
 	println("Ряд фибоначчи ")
 	fiba()
-	mass()
+	//mass()
 }
 
 func even_number() { //чётно ли число
