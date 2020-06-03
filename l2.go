@@ -14,7 +14,7 @@ func main() {
 	division()
 	println("Ряд фибоначчи ")
 	fiba()
-	mass()
+	//mass()
 }
 
 func even_number() { //чётно ли число
@@ -47,11 +47,36 @@ func fiba() {
 	fmt.Printf("\n")
 }
 
-func mass() {
-	var numbers [100]int
-	var p = 2
-	for k := 0; k < 100; k++ {
-		numbers[k] = k
-		print(numbers[k], " ")
+func mass() { //не получилось )))
+	var p int
+	var n = 100
+
+	mass := make([]int, n)
+	var flag bool //"зачеркивали" ли число для данного p
+
+	n = n - 1 //теперь n - это количесвтво чисел в массиве
+	for i := 0; i < n; i++ {
+		mass[i] = i + 2
+		for i := 0; i < n; i++ {
+			p = mass[i]
+			flag = false
+			for j := i + 1; j < n; j++ {
+				if mass[j]%p != 0 {
+					for k := j; k < n-1; k++ {
+						mass[k] = mass[k+1]
+					}
+					flag = true
+					n-- //уменьшаем, потому что чисел на одно стало меньше
+					j-- //уменьшаем, для того чтобы снова проверить на кратность j-е число. Оно же теперь стало другим
+				}
+			}
+			if flag == false {
+				break
+			}
+		}
+		for i := 0; i < n; i++ {
+
+			fmt.Printf("%d ", mass[i])
+		}
 	}
 }
